@@ -25,4 +25,8 @@ func Test_Sucess(t *testing.T) {
 	order := Order{ID: "123", Price: 34.0, Tax: 10.2}
 	assert.NoError(t, order.ValidateFields())
 	assert.Equal(t, order.Price, 34.0)
+	assert.Equal(t, order.Tax, 10.2)
+	order.CalculateFinalPrice()
+	resultFinalPrice := order.Price + order.Tax
+	assert.Equal(t, order.FinalPrice, resultFinalPrice)
 }
